@@ -1,0 +1,40 @@
+.main {
+    background: #EDEEF0;
+    height: 600px;
+}
+.app {
+    background: #fff;
+}
+.header {
+    height: 48px;
+}
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    width: 1000px;
+    margin: 0 auto;
+    padding-top: 10px;
+}
+.logo img {
+    width: 136px;
+}
+.section {
+    width: 1000px;
+    margin: 0 auto;
+    margin-top: 25px;
+    display: flex;
+}
+
+.navbar div{
+    padding: 5px 0px 5px 0px;
+}
+.profile {
+    display: flex;
+}
+.avatar {
+    margin-right: 30px;
+    margin-left: 30px;
+    height: 200px;
+    width: 200px;
+    background-color: #fff;
+}
