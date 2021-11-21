@@ -1,10 +1,10 @@
 import React from 'react';
-import '../css/style.css';
+import s from '../Header/Header.module.css';
 
 export function Header() {
-    return <div className="header">
-    <div className="header-top">
-        <div className="logo">
+    return <div className={s.header}>
+    <div className={s.headerTop}>
+        <div className={s.logo}>
             <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/VK_Full_Logo.svg" alt=""/>
         </div>
         <div className="login">
