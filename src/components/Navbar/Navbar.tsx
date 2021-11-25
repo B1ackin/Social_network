@@ -3,8 +3,12 @@ import s from '../Navbar/Navbar.module.css';
 
 export function Navbar() {
     return <div className={s.navbar}>
-        <div>Profile</div>
-        <div>Messages</div>
+        <div>
+            <a href="/profile">Profile</a>
+        </div>
+        <div>
+            <a href="/dialogs">Messages</a>
+        </div>
         <div>News</div>
         <div>Music</div>
         <div>Setting</div>
