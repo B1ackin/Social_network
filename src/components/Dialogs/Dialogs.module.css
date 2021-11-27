@@ -1,13 +1,10 @@
-.header {
-    height: 48px;
+.dialogs {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+    background-color: white;
+    padding: 10px 0px 0px 20px;
 }
-.headerTop {
-    display: flex;
-    justify-content: space-between;
-    width: 1000px;
-    margin: 0 auto;
-    padding-top: 10px;
-}
-.logo img {
-    width: 136px;
+.dialogsItem .active {
+    color: gold;
+    padding-right: 60px;;
 }
