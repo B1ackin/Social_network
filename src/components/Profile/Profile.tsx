@@ -1,9 +1,11 @@
 import React from 'react';
 import s from '../Profile/Profile.module.css';
 import {MyPosts} from "./MyPosts/MyPosts";
+import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 
 export function Profile() {
-    return  <div >
+    return  <div className={s.posts}>
+                <ProfileInfo/>
                 <MyPosts/>
             </div>
 }
