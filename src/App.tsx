@@ -5,11 +5,17 @@ import {Navbar} from "./components/Navbar/Navbar";
 import {Profile} from "./components/Profile/Profile";
 import {Dialogs} from "./components/Dialogs/Dialogs";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import state, {RootStateType} from './redux/state'
 
-function App() {
+export type RootStatePropsType = {
+    state: RootStateType
+}
+
+
+function App(props: RootStatePropsType) {
+    debugger
   return (
       <BrowserRouter>
-
       <div className="main">
           <div className="app">
               <Header />
@@ -17,13 +23,13 @@ function App() {
           <div className="section">
               <Navbar/>
               <Routes>
-              <Route path="/dialogs/*" element={<Dialogs/>} />
-              <Route path="/profile" element={<Profile />}/>
+              <Route path="/dialogs/*"
+                     element={<Dialogs state={props.state.dialogsPage} />} />
+              <Route path="/profile"
+                     element={<Profile state={props.state.profilePage} />}/>
               </Routes>
           </div>
-
       </div>
-
       </BrowserRouter>
   );
 }
