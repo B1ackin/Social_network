@@ -9,6 +9,7 @@ import state, {RootStateType} from './redux/state'
 
 export type RootStatePropsType = {
     state: RootStateType
+    addPost: (postMessage: string) => void
 }
 
 
@@ -26,7 +27,7 @@ function App(props: RootStatePropsType) {
               <Route path="/dialogs/*"
                      element={<Dialogs state={props.state.dialogsPage} />} />
               <Route path="/profile"
-                     element={<Profile state={props.state.profilePage} />}/>
+                     element={<Profile state={props.state.profilePage} addPost={props.addPost} />}/>
               </Routes>
           </div>
       </div>

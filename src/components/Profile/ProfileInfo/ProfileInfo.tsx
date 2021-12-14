@@ -6,6 +6,6 @@ import s from '../ProfileInfo/ProfileInfo.module.css';
 export function ProfileInfo() {
     return <div className={s.profileInfo}>
         <div className={s.avatar}>AVA</div>
-        <div>Description</div>
+
     </div>
 }
