@@ -23,6 +23,9 @@ export function Dialogs(props: DialogPropsType) {
             </div>
             <div className={s.messages}>
                 { messageElement }
+                <textarea></textarea>
+                <div><button>add message</button></div>
+
             </div>
         </div>
     )

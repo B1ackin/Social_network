@@ -7,8 +7,9 @@ import {MyPosts} from "./MyPosts/MyPosts";
 
 
 export type ProfileType = {
-    state: ProfilePage
-    addPost: (postMessage: string) => void
+    profilePage: ProfilePage
+    addPost: () => void
+    updateNewPostText: (newText: string) => void
 }
 
 
@@ -22,7 +23,11 @@ export function Profile(props: ProfileType) {
 
        <div className={s.wrapper}>
            <div>Description</div>
-           <MyPosts postsData={props.state.posts} addPost={props.addPost}/>
+           <MyPosts postsData={props.profilePage.posts}
+                    newPostText={props.profilePage.newPostText}
+                    addPost={props.addPost}
+                    updateNewPostText={props.updateNewPostText}
+           />
        </div>
     </div>
 }

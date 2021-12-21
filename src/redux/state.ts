@@ -17,6 +17,7 @@ export type MessagesType = {
 
 export type ProfilePage = {
     posts: Array<PostsType>
+    newPostText: string
 }
 
 export type MessagesPage = {
@@ -36,7 +37,8 @@ export let state: RootStateType = {
             {id: 2, message: "Hi, this is my first post"},
             {id: 3, message: "Yo yo yo"}
 
-        ]
+        ],
+        newPostText: 'it-kamasutra'
     },
     dialogsPage: {
         dialogs: [
@@ -54,12 +56,18 @@ export let state: RootStateType = {
 
 }
 
-export const addPost = (postMessage: string) => {
+export const addPost = () => {
     let newPost = {
         id: 5,
-        message: postMessage
+        message: state.profilePage.newPostText
     }
     state.profilePage.posts.push(newPost)
+    state.profilePage.newPostText = ''
+    rerenderEntireTree(state)
+}
+
+export const updateNewPostText = (newText: string) => {
+    state.profilePage.newPostText = newText
     rerenderEntireTree(state)
 }
 
