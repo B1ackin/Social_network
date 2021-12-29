@@ -1,13 +1,12 @@
 import React, {RefObject} from 'react';
 import s from '../MyPosts/MyPosts.module.css';
 import {Post} from "./Post/Post";
-import state, {PostsType} from "../../../redux/state";
+import state, {ActionType, addPostAC, PostsType, updateNewPostTextAC} from "../../../redux/state";
 
 type MyPostsPropsType = {
     postsData: PostsType[]
-    addPost: () => void
     newPostText: string
-    updateNewPostText: (newText: string) => void
+    dispatch: (action: ActionType) => void
 
 }
 
@@ -19,13 +18,14 @@ export const MyPosts : React.FC<MyPostsPropsType>= (props)=> {
     let newPostElement:RefObject<HTMLTextAreaElement> = React.createRef()
 
     let addPost = () => {
-        props.addPost()
+        props.dispatch(addPostAC())
     }
 
     let onPostChange = () => {
         if(newPostElement.current) {
             let text = newPostElement.current.value
-            props.updateNewPostText(text)
+            let action = updateNewPostTextAC(text)
+            props.dispatch( action )
 
 
         }

@@ -5,17 +5,17 @@ import {Navbar} from "./components/Navbar/Navbar";
 import {Profile} from "./components/Profile/Profile";
 import {Dialogs} from "./components/Dialogs/Dialogs";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import state, {RootStateType} from './redux/state'
+import state, {ActionType, StateType, StoreType} from './redux/state'
+import store from "./redux/state";
 
 export type RootStatePropsType = {
-    state: RootStateType
-    addPost: () => void
-    updateNewPostText: (newText: string) => void
+    state: StateType
+    dispatch: (action: ActionType) => void
 }
 
 
 function App(props: RootStatePropsType) {
-    debugger
+
   return (
       <BrowserRouter>
       <div className="main">
@@ -29,8 +29,7 @@ function App(props: RootStatePropsType) {
                      element={<Dialogs state={props.state.dialogsPage} />} />
               <Route path="/profile"
                      element={<Profile profilePage={props.state.profilePage}
-                                       addPost={props.addPost}
-                                       updateNewPostText={props.updateNewPostText}
+                                       dispatch={store.dispatch.bind(store)}
                      />}/>
               </Routes>
           </div>
