@@ -9,6 +9,7 @@ import state, {ActionType, StateType, StoreType} from './redux/state'
 import store from "./redux/state";
 
 export type RootStatePropsType = {
+    store: StoreType
     state: StateType
     dispatch: (action: ActionType) => void
 }
@@ -26,7 +27,7 @@ function App(props: RootStatePropsType) {
               <Navbar/>
               <Routes>
               <Route path="/dialogs/*"
-                     element={<Dialogs state={props.state.dialogsPage} />} />
+                     element={<Dialogs store={store} />} />
               <Route path="/profile"
                      element={<Profile profilePage={props.state.profilePage}
                                        dispatch={store.dispatch.bind(store)}
