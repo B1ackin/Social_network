@@ -1,3 +1,5 @@
+import profileReducer from "./profile-reducer";
+import dialogsReducer from "./dialogs-reducer";
 
 export type PostsType = {
     id: number,
@@ -38,24 +40,22 @@ export type StoreType = {
     dispatch: (action: ActionType) => void
 
 }
-
-export type AddPostTypeAC = {
-    type: "ADD-POST"
+export type UpdateNewMessageBodyTypeAC = {
+    type: 'UPDATE-NEW-MESSAGE-BODY'
+    body: string
 }
 export type SendMessageTypeAC = {
     type: 'SEND-MESSAGE'
+}
+export type AddPostTypeAC = {
+    type: "ADD-POST"
 }
 export type NewPostTextTypeAC = {
     type: 'UPDATE-NEW-POST-TEXT'
     newText: string
 }
-export type UpdateNewMessageBodyTypeAC = {
-    type: 'UPDATE-NEW-MESSAGE-BODY'
-    body: string
-}
 
-
-export type ActionType = AddPostTypeAC | NewPostTextTypeAC | UpdateNewMessageBodyTypeAC | SendMessageTypeAC
+export type ActionType = UpdateNewMessageBodyTypeAC | SendMessageTypeAC | AddPostTypeAC | NewPostTextTypeAC
 
 let store: StoreType = {
     _state: {
@@ -94,42 +94,13 @@ let store: StoreType = {
         this._callSubcriber = observer
     },
     dispatch(action) {
-        if (action.type === 'ADD-POST') {
-            let newPost: PostsType = {
-                id: 5,
-                message: this._state.profilePage.newPostText
-            }
-            this._state.profilePage.posts.push(newPost)
-            this._state.profilePage.newPostText = ''
-            this._callSubcriber(this._state)
-        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
-            this._state.profilePage.newPostText = action.newText
-            this._callSubcriber(this._state)
-        } else if (action.type === 'UPDATE-NEW-MESSAGE-BODY') {
-            this._state.dialogsPage.newMessageBody = action.body
-            this._callSubcriber(this._state)
-        } else if (action.type === 'SEND-MESSAGE') {
-            let body = this._state.dialogsPage.newMessageBody
-            this._state.dialogsPage.newMessageBody = ''
-            this._state.dialogsPage.messages.push({id: 4, message: body})
-            this._callSubcriber(this._state)
-        }
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+        this._callSubcriber(this._state)
     }
 
 }
 
-export const addPostAC = (): AddPostTypeAC => ({type: 'ADD-POST'})
-
-export const updateNewPostTextAC = (text: string): NewPostTextTypeAC => ({
-    type: 'UPDATE-NEW-POST-TEXT',
-    newText: text
-})
-
-export const updateNewMessageBodyAC = (body: string): UpdateNewMessageBodyTypeAC => ({
-    type: 'UPDATE-NEW-MESSAGE-BODY',
-    body: body
-})
-export const sendMessageAC = (): SendMessageTypeAC => ({type: 'SEND-MESSAGE'})
 
 
 export default store;
