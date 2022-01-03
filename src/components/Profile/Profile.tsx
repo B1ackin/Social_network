@@ -2,7 +2,7 @@ import React from 'react';
 import s from '../Profile/Profile.module.css';
 
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
-import state, {ActionType, ProfilePage} from "../../redux/state";
+import state, {ActionType, ProfilePage} from "../../redux/store";
 import {MyPosts} from "./MyPosts/MyPosts";
 
 

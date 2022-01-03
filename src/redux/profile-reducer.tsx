@@ -1,12 +1,20 @@
 import React from 'react';
-import {ActionType, AddPostTypeAC, NewPostTextTypeAC, PostsType, ProfilePage} from "./state";
+import {ActionType, AddPostTypeAC, NewPostTextTypeAC, PostsType, ProfilePage} from "./store";
 
 const ADD_POST = "ADD-POST"
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT"
 
-export type profileReducerActionType = AddPostTypeAC | NewPostTextTypeAC
+let initialState: ProfilePage = {
+    posts: [
+        {id: 1, message: "Hi, how are you?"},
+        {id: 2, message: "Hi, this is my first post"},
+        {id: 3, message: "Yo yo yo"}
 
-const profileReducer = (state: ProfilePage, action: ActionType)  => {
+    ],
+    newPostText: 'it-kamasutra'
+}
+
+const profileReducer = (state: ProfilePage = initialState, action: ActionType): ProfilePage  => {
     switch (action.type) {
         case ADD_POST:
             let newPost: PostsType = {

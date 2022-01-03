@@ -1,7 +1,7 @@
 import s from "../Dialogs.module.css";
 import {NavLink} from "react-router-dom";
 import React from "react";
-import state from "../../../redux/state";
+import state from "../../../redux/store";
 
 type PropsType = {
     id: number
