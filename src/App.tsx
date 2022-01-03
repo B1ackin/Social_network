@@ -7,6 +7,7 @@ import {Dialogs} from "./components/Dialogs/Dialogs";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import state, {ActionType, StateType, StoreType} from './redux/store'
 import store from "./redux/store";
+import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 
 export type RootStatePropsType = {
     store: StoreType
@@ -27,11 +28,9 @@ function App(props: RootStatePropsType) {
               <Navbar/>
               <Routes>
               <Route path="/dialogs/*"
-                     element={<Dialogs store={store} />} />
+                     element={<DialogsContainer store={props.store} />} />
               <Route path="/profile"
-                     element={<Profile profilePage={props.state.profilePage}
-                                       dispatch={store.dispatch.bind(store)}
-                     />}/>
+                     element={<Profile store={props.store} />}/>
               </Routes>
           </div>
       </div>
