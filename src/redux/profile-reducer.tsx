@@ -17,12 +17,20 @@ let initialState: ProfilePage = {
 const profileReducer = (state: ProfilePage = initialState, action: ActionType): ProfilePage  => {
     switch (action.type) {
         case ADD_POST:
-            let newPost: PostsType = {
-                id: 5,
-                message: state.newPostText
+            // let newPost: PostsType = {
+            //     id: 5,
+            //     message: state.newPostText
+            // }
+            // state.posts.push(newPost)
+            // state.newPostText = ''
+            if(state.newPostText !== '') {
+                let newPost: PostsType = {
+                    id: 5,
+                    message: state.newPostText,
+                }
+                state.posts.push(newPost);
+                state.newPostText = '';
             }
-            state.posts.push(newPost)
-            state.newPostText = ''
             return state;
 
         case UPDATE_NEW_POST_TEXT:
@@ -33,10 +41,10 @@ const profileReducer = (state: ProfilePage = initialState, action: ActionType): 
     }
 }
 
-export const addPostAC = (): AddPostTypeAC => ({type: 'ADD-POST'})
+export const addPostAC = (): AddPostTypeAC => ({type: ADD_POST})
 
 export const updateNewPostTextAC = (text: string): NewPostTextTypeAC => ({
-    type: 'UPDATE-NEW-POST-TEXT',
+    type: UPDATE_NEW_POST_TEXT,
     newText: text
 })
 

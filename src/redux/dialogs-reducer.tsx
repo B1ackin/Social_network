@@ -16,11 +16,10 @@ let initialState: MessagesPage = {
         {id: 2, message: "Hi"},
         {id: 3, message: "Yo"},
     ],
-    newMessageBody: ''
+    newMessageBody: '1'
 }
 
 const dialogsReducer = (state: MessagesPage = initialState, action: ActionType): MessagesPage => {
-
 switch (action.type) {
     case UPDATE_NEW_MESSAGE_BODY:
         state.newMessageBody = action.body
@@ -36,9 +35,9 @@ switch (action.type) {
 }
 
 export const updateNewMessageBodyAC = (body: string): UpdateNewMessageBodyTypeAC => ({
-    type: 'UPDATE-NEW-MESSAGE-BODY',
+    type: UPDATE_NEW_MESSAGE_BODY,
     body: body
 })
-export const sendMessageAC = (): SendMessageTypeAC => ({type: 'SEND-MESSAGE'})
+export const sendMessageAC = (): SendMessageTypeAC => ({type: SEND_MESSAGE})
 
 export default dialogsReducer;

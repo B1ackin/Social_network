@@ -3,29 +3,36 @@ import s from '../MyPosts/MyPosts.module.css';
 import {Post} from "./Post/Post";
 import state, {ActionType, PostsType} from "../../../redux/store";
 import {addPostAC, updateNewPostTextAC} from "../../../redux/profile-reducer";
+import {MyPostPropsType} from "./MyPostsContainer";
 
-type MyPostsPropsType = {
-    posts: PostsType[]
-    onAddPost: () => void
-    updateNewPostTextAC: (text: string) => void
-    newPostText: string
-}
+// type MyPostsPropsType = {
+//     posts: PostsType[]
+//     onAddPost: () => void
+//     updateNewPostTextAC: (text: string) => void
+//     newPostText: string
+// }
 
 
-export const MyPosts : React.FC<MyPostsPropsType>= (props)=> {
+export const MyPosts : React.FC<MyPostPropsType>= (props)=> {
 
-    let PostElements = props.posts.map(p => <Post id={p.id} message={p.message} />)
-    let newPostElement:RefObject<HTMLTextAreaElement> = React.createRef()
+    let PostElements = props.posts.map(p => <Post key={p.id} id={p.id} message={p.message} />)
+    let newPostElement = React.createRef<HTMLTextAreaElement>();
 
     let addPost = () => {
         props.onAddPost()
     }
 
-    let onPostChange = () => {
-        if(newPostElement.current) {
-            let text = newPostElement.current.value
-            props.updateNewPostTextAC(text)
-        }
+    // let onPostChange = () => {
+    //     if(newPostElement.current) {
+    //         let text = newPostElement.current.value
+    //         props.onPostChange(text)
+    //     }
+    // }
+
+    let onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        let text = newPostElement.current ? newPostElement.current.value : "";
+        props.onPostChange(text);
+
     }
 
     return <div className={s.myPost}>

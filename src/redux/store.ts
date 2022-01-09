@@ -35,7 +35,7 @@ export type StateType = {
 export type StoreType = {
     _state: StateType,
     _callSubcriber: (_state: StateType) => void,
-    subscriber: (observer: (state: StateType) => void) => void,
+    subscribe: (observer: (state: StateType) => void) => void,
     getState: () => StateType
     dispatch: (action: ActionType) => void
 
@@ -90,7 +90,7 @@ let store: StoreType = {
     getState() {
         return this._state
     },
-    subscriber (observer) {
+    subscribe (observer) {
         this._callSubcriber = observer
     },
     dispatch(action) {

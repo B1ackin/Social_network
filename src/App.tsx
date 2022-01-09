@@ -5,18 +5,17 @@ import {Navbar} from "./components/Navbar/Navbar";
 import {Profile} from "./components/Profile/Profile";
 import {Dialogs} from "./components/Dialogs/Dialogs";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import state, {ActionType, StateType, StoreType} from './redux/store'
-import store from "./redux/store";
-import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
-
-export type RootStatePropsType = {
-    store: StoreType
-    state: StateType
-    dispatch: (action: ActionType) => void
-}
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 
-function App(props: RootStatePropsType) {
+// export type RootStatePropsType = {
+//     store: StoreType
+//     state: StateType
+//     dispatch: (action: ActionType) => void
+// }
+
+
+function App() {
 
   return (
       <BrowserRouter>
@@ -28,9 +27,9 @@ function App(props: RootStatePropsType) {
               <Navbar/>
               <Routes>
               <Route path="/dialogs/*"
-                     element={<DialogsContainer store={props.store} />} />
+                     element={<DialogsContainer/>} />
               <Route path="/profile"
-                     element={<Profile store={props.store} />}/>
+                     element={<Profile />}/>
               </Routes>
           </div>
       </div>

@@ -2,15 +2,15 @@ import React from 'react';
 import s from '../Profile/Profile.module.css';
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import {StoreType} from "../../redux/store";
-import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
+import MyPostsContainer from "./MyPosts/MyPostsContainer";
 
 
-export type ProfileType = {
-    store: StoreType
-}
+// export type ProfileType = {
+//     store: StoreType
+// }
 
 
-export function Profile(props: ProfileType) {
+export function Profile() {
 
     return <div className={s.posts}>
 
@@ -18,7 +18,7 @@ export function Profile(props: ProfileType) {
 
        <div className={s.wrapper}>
            <div>Description</div>
-           <MyPostsContainer store={props.store} />
+           <MyPostsContainer />
        </div>
     </div>
 }
