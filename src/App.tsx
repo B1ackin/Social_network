@@ -8,13 +8,6 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 
-// export type RootStatePropsType = {
-//     store: StoreType
-//     state: StateType
-//     dispatch: (action: ActionType) => void
-// }
-
-
 function App() {
 
   return (
