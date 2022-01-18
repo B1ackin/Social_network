@@ -10,7 +10,9 @@ export function Navbar() {
         <div>
             <NavLink to="/dialogs">Messages</NavLink>
         </div>
-        <div>News</div>
+        <div>
+            <NavLink to="/users">Users</NavLink>
+        </div>
         <div>Music</div>
         <div>Setting</div>
     </div>
