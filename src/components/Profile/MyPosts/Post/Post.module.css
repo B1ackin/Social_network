@@ -1,7 +1,21 @@
 .posts {
 
 }
+.item {
+    background: #fff;
+    padding: 20px;
+    border-radius: 20px;
+    margin: 20px 0;
+    display: flex;
+}
+
 .item img {
     width: 60px;
     height: 60px;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.postMessage {
+    vertical-align: top;
 }

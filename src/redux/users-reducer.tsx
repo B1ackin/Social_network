@@ -23,12 +23,17 @@ type UserLocationType = {
     country: string
 }
 
+type PhotoType = {
+    small: string
+    large: string
+}
+
 export type UserType = {
     id: number,
     followed: boolean,
-    fullName: string,
+    name: string,
     status: string,
-    photoUrl: string,
+    photos: PhotoType,
     location: UserLocationType
 }
 
@@ -41,11 +46,7 @@ const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET_USERS'
 
 let initialState: UsersArrayType = {
-    users: [
-        {id: 1, photoUrl:'https://klike.net/uploads/posts/2019-03/1551511784_4.jpg', followed: true, fullName: 'Dima', status: 'I am boss', location: {city: 'Minsk', country: 'Belarus'}},
-        {id: 2, photoUrl:'https://klike.net/uploads/posts/2019-03/1551511784_4.jpg', followed: false, fullName: 'Kirill', status: 'I am boss too', location: {city: 'Moskow', country: 'Russian'}},
-        {id: 3, photoUrl:'https://klike.net/uploads/posts/2019-03/1551511784_4.jpg', followed: true, fullName: 'Leonid', status: 'I am boss too', location: {city: 'Kiev', country: 'Ukraine'}}
-    ]
+    users: []
 }
 
 const usersReducer = (state:UsersArrayType = initialState, action: UsersActionType): UsersArrayType  => {
@@ -86,7 +87,7 @@ const usersReducer = (state:UsersArrayType = initialState, action: UsersActionTy
 
 export const followAC = (userId: number) => ({type: FOLLOW, userId})
 export const unfollowAC = (userId: number) => ({type: UNFOLLOW, userId})
-export const setUsersAc = (users: Array<UserType>) => ({type: UNFOLLOW, users})
+export const setUsersAc = (users: Array<UserType>) => ({type: SET_USERS, users})
 
 
 

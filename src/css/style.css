@@ -1,6 +1,7 @@
 .main {
     background: #EDEEF0;
-    height: 600px;
+    height: 100%;
+    padding-bottom: 65px;
 }
 .app {
     background: #fff;
@@ -13,4 +14,15 @@
     display: flex;
 }
 
-
+.usersList {
+    width: 800px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.usersCard {
+    margin: 10px 30px;
+}
+.titleFriend {
+    margin-left: 30px;
+    margin-top: 0px;
+}

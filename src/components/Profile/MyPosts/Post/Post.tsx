@@ -8,7 +8,7 @@ export function Post(props: PostsType) {
     return  <div className={s.posts}>
             <div className={s.item}>
                 <img src={avatar} alt=""/>
-                {props.message}
+                <span className='postMessage'>{props.message}</span>
             </div>
         </div>
 
