@@ -3,7 +3,7 @@ import React from 'react';
 import {UserType} from "../../redux/users-reducer";
 import noAvatar from '../../assets/images/no-avatar.png'
 
-export type UsersPropsType ={
+type UsersPropsType ={
     users: Array<UserType>
     setUsers: (users:Array<UserType>) => void
     follow: (id: number) => void
@@ -12,33 +12,29 @@ export type UsersPropsType ={
 
 
 
-export const Users = (props: UsersPropsType) => {
-
-    if(props.users.length === 0) {
-
+export class UsersC extends React.Component<UsersPropsType>{
+    constructor(props: UsersPropsType) {
+        super(props);
         axios.get("https://social-network.samuraijs.com/api/1.0/users").then( response => {
-            props.setUsers(response.data.items)
-        })
-    }
-    // if(props.users.length === 0) {
-    //  props.setUsers([        {id: 1, photoUrl:'https://klike.net/uploads/posts/2019-03/1551511784_4.jpg', followed: true, fullName: 'Dima', status: 'I am boss', location: {city: 'Minsk', country: 'Belarus'}},
-    //      {id: 2, photoUrl:'https://klike.net/uploads/posts/2019-03/1551511784_4.jpg', followed: false, fullName: 'Kirill', status: 'I am boss too', location: {city: 'Moskow', country: 'Russian'}},
-    //      {id: 3, photoUrl:'https://klike.net/uploads/posts/2019-03/1551511784_4.jpg', followed: true, fullName: 'Leonid', status: 'I am boss too', location: {city: 'Kiev', country: 'Ukraine'}}])
-    // }
+                     props.setUsers(response.data.items)
+               })
 
+    }
+
+    render() {
 
     return <div ><h1 className='titleFriend'>My Friends:</h1>
         <div className='usersList'>
         {
 
-            props.users.map(u => <div key={u.id} className='usersCard'>
+            this.props.users.map(u => <div key={u.id} className='usersCard'>
                 <span><div>
                     <img width={100} height={100} src={u.photos.small != null ? u.photos.small : noAvatar}/>
                 </div>
                 <div>
                    {u.followed
-                       ? <button onClick={() => { props.unfollow(u.id)} }>Unfollow</button>
-                       : <button onClick={ () => {props.follow(u.id)} }>Follow</button>
+                       ? <button onClick={() => { this.props.unfollow(u.id)} }>Unfollow</button>
+                       : <button onClick={ () => {this.props.follow(u.id)} }>Follow</button>
                    }
                 </div>
                 </span>
@@ -57,4 +53,5 @@ export const Users = (props: UsersPropsType) => {
 
     </div>
     </div>
+}
 }
