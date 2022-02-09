@@ -50,6 +50,7 @@ export type UsersArrayType = {
     pageSize?: number
     totalUserCount?: number
     currentPage?: number
+    totalCount?: number
 }
 
 
@@ -72,6 +73,7 @@ const usersReducer = (state:UsersArrayType = initialState, action: UsersActionTy
     switch (action.type) {
         case FOLLOW:
             return {
+                ...state,
                 users: state.users.map(u => {
                     if(u.id === action.userId) {
                         return {...u, followed: true}
@@ -83,6 +85,7 @@ const usersReducer = (state:UsersArrayType = initialState, action: UsersActionTy
 
         case UNFOLLOW:
             return {
+                ...state,
                 users: state.users.map(u => {
                     if(u.id === action.userId) {
                         return {...u, followed: false}
