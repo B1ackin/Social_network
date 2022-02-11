@@ -2,6 +2,7 @@ import React from 'react';
 import {UserType} from "../../redux/users-reducer";
 import noAvatar from '../../assets/images/no-avatar.png'
 import s from './users.module.css'
+import {Preloader} from "../common/Preloader/Preloader";
 
 type PropsUserType = {
     users: Array<UserType>
@@ -11,6 +12,7 @@ type PropsUserType = {
     onPageChange: (pageNumber: number) => void
     follow: (userID: number) => void
     unfollow: (userID: number) => void
+    isFetching: boolean
 }
 
  const Users = (props:PropsUserType) => {
@@ -24,6 +26,7 @@ type PropsUserType = {
 
         return <div><h1 className='titleFriend'>My Friends:</h1>
             <div>
+                {props.isFetching ? <Preloader/> : null}
                 {pages.map(p => {
                     return <span className={props.currentPage === p ? s.selectedPage : ''}
                                  onClick={() => {
