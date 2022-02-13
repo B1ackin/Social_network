@@ -17,7 +17,9 @@ type PropsUserType = {
 
  const Users = (props:PropsUserType) => {
 
-    let pageCount = Math.ceil(props.totalUserCount / props.pageSize)
+    let pageCount = Math.ceil(props.totalUserCount / props.pageSize) //pageSize: 12 //totalUserCount: 5 // Всего
+     //юзеров делим на количество друзей на странице и получаем кол-во страниц
+     console.log(pageCount) //1455 страниц
 
     let pages = []
     for (let i = 1; i <= pageCount; i++) {
