@@ -1,6 +1,5 @@
 import s from "../Dialogs.module.css";
 import React from "react";
-import state from "../../../redux/store";
 
 type PropsType = {
     message: string,

@@ -1,8 +1,34 @@
 import React from 'react';
-import {ActionType, AddPostTypeAC, NewPostTextTypeAC, PostsType, ProfilePage} from "./store";
+import {ProfileType} from "../components/Profile/Profile";
 
 const ADD_POST = "ADD-POST"
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT"
+const SET_USER_PROFILE = 'SET_USER_PROFILE'
+
+export type PostsType = {
+    id: number,
+    message: string
+}
+
+export type ProfilePage = {
+    posts: Array<PostsType>
+    newPostText: string
+    profile: ProfileType | null
+}
+
+export type AddPostTypeAC = {
+    type: "ADD-POST"
+}
+export type NewPostTextTypeAC = {
+    type: 'UPDATE-NEW-POST-TEXT'
+    newText: string
+}
+export type SetUserProfileTypeAC = {
+    type: 'SET_USER_PROFILE'
+    profile: ProfileType
+}
+
+type ActionType = AddPostTypeAC | NewPostTextTypeAC | SetUserProfileTypeAC
 
 let initialState: ProfilePage = {
     posts: [
@@ -11,8 +37,10 @@ let initialState: ProfilePage = {
         {id: 3, message: "Yo yo yo"}
 
     ],
-    newPostText: 'it-kamasutra'
+    newPostText: 'it-kamasutra',
+    profile: null as ProfileType | null
 }
+
 
 const profileReducer = (state: ProfilePage = initialState, action: ActionType): ProfilePage  => {
     switch (action.type) {
@@ -41,6 +69,11 @@ const profileReducer = (state: ProfilePage = initialState, action: ActionType): 
             // stateCopy.newPostText = action.newText
             // return stateCopy
         }
+        case SET_USER_PROFILE:
+            return {
+                ...state,
+                profile: action.profile
+            }
         default:
             return state
 
@@ -55,6 +88,6 @@ export const updateNewPostTextAC = (text: string): NewPostTextTypeAC => ({
     type: UPDATE_NEW_POST_TEXT,
     newText: text
 })
-
+export const setUserProfile = (profile: ProfileType) => ({type: SET_USER_PROFILE, profile})
 
 export default profileReducer;

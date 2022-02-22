@@ -1,10 +1,10 @@
 import React from 'react';
-import {MessagesPage, PostsType, StoreType} from "../../../redux/store";
 import {addPostAC, updateNewPostTextAC} from "../../../redux/profile-reducer";
 import {MyPosts} from "./MyPosts";
 import {connect} from "react-redux";
 import {AppStateType} from "../../../redux/redux-store";
 import {Dispatch} from "redux";
+import {PostsType} from "../../Dialogs/Dialogs";
 
 // type MyPostsPropsType = {
 //     store: StoreType

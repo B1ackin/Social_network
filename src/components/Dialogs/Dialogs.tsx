@@ -2,7 +2,6 @@ import React, {ChangeEvent} from 'react';
 import s from '../Dialogs/Dialogs.module.css';
 import {Message} from "./Message/Message";
 import {DialogItem} from "./DialogsItem/DialogsItem";
-import {MessagesPage,} from "../../redux/store";
 import {DialogsPropsType} from "./DialogsContainer";
 
 type DialogPropsType  = {
@@ -11,6 +10,25 @@ type DialogPropsType  = {
     dialogsPage: MessagesPage
 }
 
+export type MessagesPage = {
+    dialogs: Array<DialogsType>,
+    messages: Array<MessagesType>
+    newMessageBody: string
+}
+export type PostsType = {
+    id: number,
+    message: string
+}
+
+export type DialogsType = {
+    id: number,
+    name: string
+}
+
+export type MessagesType = {
+    id?: number,
+    message: string
+}
 
 export const Dialogs: React.FC<DialogPropsType> = (props) => {
 

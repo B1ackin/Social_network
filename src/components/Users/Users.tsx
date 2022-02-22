@@ -3,6 +3,7 @@ import {UserType} from "../../redux/users-reducer";
 import noAvatar from '../../assets/images/no-avatar.png'
 import s from './users.module.css'
 import {Preloader} from "../common/Preloader/Preloader";
+import {NavLink} from "react-router-dom";
 
 type PropsUserType = {
     users: Array<UserType>
@@ -42,7 +43,10 @@ type PropsUserType = {
 
                     props.users.map(u => <div key={u.id} className='usersCard'>
                 <span><div>
-                    <img width={100} height={100} src={u.photos.small != null ? u.photos.small : noAvatar}/>
+                    <NavLink to={'/profile/' + u.id}>
+                        <img width={100} height={100} src={u.photos.small != null ? u.photos.small : noAvatar}/>
+                    </NavLink>
+
                 </div>
                 <div>
                    {u.followed

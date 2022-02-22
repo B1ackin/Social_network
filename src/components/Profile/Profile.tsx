@@ -1,20 +1,47 @@
 import React from 'react';
 import s from '../Profile/Profile.module.css';
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
-import {StoreType} from "../../redux/store";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 
 
-// export type ProfileType = {
-//     store: StoreType
-// }
+export type PropsType = {
+    profile: ProfileType | null
+}
+export type PostDataArray = {
+    id: string
+    message: string
+    like: number
+}
+export type ContactsType = {
+    facebook: string
+    website: string
+    vk: string
+    twitter: string
+    instagram: string
+    youtube: string
+    github: string
+    mainLink: string
+}
+export type PhotosType = {
+    small: string | null
+    large: string | null
+}
+export type ProfileType = {
+    userId: number
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    aboutMe: string
+    fullName: string
+    contacts: ContactsType
+    photos: PhotosType
+}
 
 
-export function Profile() {
+export function Profile(props: PropsType) {
 
     return <div className={s.posts}>
 
-        <ProfileInfo/>
+        <ProfileInfo profile={props.profile}/>
 
        <div className={s.wrapper}>
            <div>Description</div>

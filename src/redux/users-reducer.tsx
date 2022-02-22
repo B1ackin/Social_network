@@ -67,6 +67,7 @@ const TOOGLE_IS_FETCHING = 'TOOGLE_IS_FETCHING'
 
 
 
+
 let initialState: UsersArrayType = {
     users: [],
     pageSize: 12,
@@ -121,6 +122,7 @@ const usersReducer = (state:UsersArrayType = initialState, action: UsersActionTy
                 ...state,
                 isFetching: action.isFetching
             }
+
         default:
             return state
 
@@ -135,6 +137,7 @@ export const setUsers = (users: Array<UserType>) => ({type: SET_USERS, users})
 export const setCurrentPage = (currentPage: number) => ({type: SET_CURRENT_PAGE, currentPage})
 export const setTotalUsersCount = (totalCount: number) => ({type: SET_TOTAL_USERS_COUNT, count: totalCount})
 export const toogleIsFetching = (isFetching: boolean) => ({type: TOOGLE_IS_FETCHING, isFetching})
+
 
 
 

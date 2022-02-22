@@ -1,8 +1,19 @@
 import React from 'react';
-import {ActionType, MessagesPage, SendMessageTypeAC, UpdateNewMessageBodyTypeAC} from "./store";
+import {MessagesPage} from "../components/Dialogs/Dialogs";
 
 const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY'
 const SEND_MESSAGE = 'SEND-MESSAGE'
+
+export type UpdateNewMessageBodyTypeAC = {
+    type: 'UPDATE-NEW-MESSAGE-BODY'
+    body: string
+}
+export type SendMessageTypeAC = {
+    type: 'SEND-MESSAGE'
+}
+
+
+export type ActionType = UpdateNewMessageBodyTypeAC | SendMessageTypeAC
 
 let initialState: MessagesPage = {
     dialogs: [
