@@ -4,7 +4,7 @@ import {Header} from "./components/Header/Header";
 import {Navbar} from "./components/Navbar/Navbar";
 import {Profile} from "./components/Profile/Profile";
 import {Dialogs} from "./components/Dialogs/Dialogs";
-import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import {BrowserRouter, Route} from 'react-router-dom';
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import {Delete} from "./components/Users/Delete";
 import UsersContainer from "./components/Users/UsersContainer";
@@ -21,14 +21,13 @@ function App() {
                 </div>
                 <div className="section">
                     <Navbar/>
-                    <Routes>
-                        <Route path="/dialogs/*"
-                               element={<DialogsContainer/>}/>
-                        <Route path="/profile/:userId"
-                               element={<ProfileContainer/>}/>
-                        <Route path="/users"
-                               element={<UsersContainer/>}/>
-                    </Routes>
+                    <Route path="/profile/:userId?" render={() => <ProfileContainer/>}/>
+
+                    <Route path="/dialogs"
+                           render={() => <DialogsContainer/>}/>
+
+                    <Route path="/users"
+                           render={() => <UsersContainer /> }/>
                 </div>
             </div>
         </BrowserRouter>
