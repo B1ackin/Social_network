@@ -13,8 +13,8 @@ export function ProfileInfo(props: PropsType) {
     }
 
     return <div className={s.profileInfo}>
-        <img src={props.profile.photos.small || undefined} alt=""/>
-        <div className={s.avatar}>AVA</div>
+
+        <div className={s.avatar}><img className={s.photo} src={props.profile.photos.large || undefined} alt=""/></div>
 
     </div>
 }

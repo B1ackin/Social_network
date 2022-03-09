@@ -9,6 +9,8 @@ import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import {Delete} from "./components/Users/Delete";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
+import HeaderContainer from "./components/Header/HeaderContainer";
+
 
 
 function App() {
@@ -17,7 +19,7 @@ function App() {
         <BrowserRouter>
             <div className="main">
                 <div className="app">
-                    <Header/>
+                    <HeaderContainer/>
                 </div>
                 <div className="section">
                     <Navbar/>
