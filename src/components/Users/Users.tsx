@@ -4,6 +4,7 @@ import noAvatar from '../../assets/images/no-avatar.png'
 import s from './users.module.css'
 import {Preloader} from "../common/Preloader/Preloader";
 import {NavLink} from "react-router-dom";
+import axios from "axios";
 
 type PropsUserType = {
     users: Array<UserType>
@@ -51,10 +52,34 @@ type PropsUserType = {
                 <div>
                    {u.followed
                        ? <button onClick={() => {
-                           props.unfollow(u.id)
+
+                           axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,  {
+                               withCredentials: true,
+                               headers: {
+                                   "API-KEY": "3d3e74ba-244a-493d-82e2-37000cf7c4ef"
+                               }
+                           })
+                               .then(response => {
+                                   if(response.data.resultCode == 0) {
+                                       props.unfollow(u.id)
+                                   }
+                               })
+
+
                        }}>Unfollow</button>
                        : <button onClick={() => {
-                           props.follow(u.id)
+
+                           axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,  {}, {
+                               withCredentials: true,
+                               headers: {
+                                   "API-KEY": "3d3e74ba-244a-493d-82e2-37000cf7c4ef"
+                               }
+                           })
+                               .then(response => {
+                                   if(response.data.resultCode == 0) {
+                                       props.follow(u.id)
+                                   }
+                               })
                        }}>Follow</button>
                    }
                 </div>

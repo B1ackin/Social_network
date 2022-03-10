@@ -1,16 +1,11 @@
 import React from 'react';
 import '../src/css/style.css';
-import {Header} from "./components/Header/Header";
 import {Navbar} from "./components/Navbar/Navbar";
-import {Profile} from "./components/Profile/Profile";
-import {Dialogs} from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from 'react-router-dom';
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
-import {Delete} from "./components/Users/Delete";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
-
 
 
 function App() {
