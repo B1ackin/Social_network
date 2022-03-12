@@ -15,6 +15,9 @@ type PropsUserType = {
     follow: (userID: number) => void
     unfollow: (userID: number) => void
     isFetching: boolean
+    toogleFollowingProgress: (isFetching:boolean, userId:number) => void
+    followingInProgress: Array<number>
+
 }
 
  const Users = (props:PropsUserType) => {
@@ -51,8 +54,8 @@ type PropsUserType = {
                 </div>
                 <div>
                    {u.followed
-                       ? <button onClick={() => {
-
+                       ? <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
+                            props.toogleFollowingProgress(true, u.id)
                            axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,  {
                                withCredentials: true,
                                headers: {
@@ -63,12 +66,13 @@ type PropsUserType = {
                                    if(response.data.resultCode == 0) {
                                        props.unfollow(u.id)
                                    }
+                                   props.toogleFollowingProgress(false, u.id)
                                })
 
 
                        }}>Unfollow</button>
-                       : <button onClick={() => {
-
+                       : <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
+                           props.toogleFollowingProgress(true, u.id)
                            axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`,  {}, {
                                withCredentials: true,
                                headers: {
@@ -79,6 +83,7 @@ type PropsUserType = {
                                    if(response.data.resultCode == 0) {
                                        props.follow(u.id)
                                    }
+                                   props.toogleFollowingProgress(false, u.id)
                                })
                        }}>Follow</button>
                    }

@@ -26,8 +26,13 @@ type toogleIsFetchingAC = {
     type: 'TOOGLE_IS_FETCHING'
     isFetching: boolean
 }
+type toogleFollowingProgressAC = {
+    type: 'TOOGLE_IS_FOLLOWING_PROGRESS'
+    isFetching: boolean,
+    userId: number
+}
 
-type UsersActionType = FollowAC | UnFollowAC | SetUsersAC | CurrentPageAC | setTotalUsersCountAC | toogleIsFetchingAC
+type UsersActionType = FollowAC | UnFollowAC | SetUsersAC | CurrentPageAC | setTotalUsersCountAC | toogleIsFetchingAC | toogleFollowingProgressAC
 
 type UserLocationType = {
     city: string,
@@ -55,6 +60,7 @@ export type UsersArrayType = {
     currentPage?: number
     totalCount?: number
     isFetching: boolean
+    followingInProgress: Array<number>
 }
 
 
@@ -64,7 +70,7 @@ const SET_USERS = 'SET_USERS'
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
 const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT'
 const TOOGLE_IS_FETCHING = 'TOOGLE_IS_FETCHING'
-
+const TOOGLE_IS_FOLLOWING_PROGRESS = 'TOOGLE_IS_FOLLOWING_PROGRESS'
 
 
 
@@ -73,7 +79,8 @@ let initialState: UsersArrayType = {
     pageSize: 12,
     totalUserCount: 5,
     currentPage: 1,
-    isFetching: false
+    isFetching: false,
+    followingInProgress: []
 }
 
 const usersReducer = (state:UsersArrayType = initialState, action: UsersActionType): UsersArrayType  => {
@@ -122,6 +129,13 @@ const usersReducer = (state:UsersArrayType = initialState, action: UsersActionTy
                 ...state,
                 isFetching: action.isFetching
             }
+            case TOOGLE_IS_FOLLOWING_PROGRESS:
+            return {
+                ...state,
+                followingInProgress: action.isFetching
+                ? [...state.followingInProgress, action.userId]
+                    : state.followingInProgress.filter(id => id != action.userId)
+            }
 
         default:
             return state
@@ -137,6 +151,7 @@ export const setUsers = (users: Array<UserType>) => ({type: SET_USERS, users})
 export const setCurrentPage = (currentPage: number) => ({type: SET_CURRENT_PAGE, currentPage})
 export const setTotalUsersCount = (totalCount: number) => ({type: SET_TOTAL_USERS_COUNT, count: totalCount})
 export const toogleIsFetching = (isFetching: boolean) => ({type: TOOGLE_IS_FETCHING, isFetching})
+export const toogleFollowingProgress = (isFetching: boolean, userId: number) => ({type: TOOGLE_IS_FOLLOWING_PROGRESS, isFetching, userId})
 
 
 
