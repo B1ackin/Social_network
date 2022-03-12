@@ -12,7 +12,7 @@ import {
 } from "../../redux/users-reducer";
 import axios from "axios";
 import Users from "./Users";
-import {getUser} from "../../api/api";
+import {usersAPI} from "../../api/api";
 
 
 type MapStatePropsType = {
@@ -43,7 +43,7 @@ export class UsersContainer extends React.Component<UsersPropsType> {
 
     componentDidMount() {
         this.props.toogleIsFetching(true)
-        getUser(this.props.currentPage, this.props.pageSize).then(data => {
+        usersAPI.getUser(this.props.currentPage, this.props.pageSize).then(data => {
                 this.props.toogleIsFetching(false)
                 this.props.setUsers(data.items)
                 this.props.setTotalUsersCount(data.totalCount)
@@ -53,7 +53,7 @@ export class UsersContainer extends React.Component<UsersPropsType> {
     onPageChange = (pageNumber: number) => {
         this.props.setCurrentPage(pageNumber)
         this.props.toogleIsFetching(true)
-        getUser(pageNumber, this.props.pageSize).then(data => {
+        usersAPI.getUser(pageNumber, this.props.pageSize).then(data => {
                 this.props.toogleIsFetching(false)
                 this.props.setUsers(data.items)
             })
