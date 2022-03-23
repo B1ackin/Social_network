@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import s from '../Header/Header.module.css';
+import logo from '../../img/social-network.png'
 
 type PropsType = {
     isAuth: boolean
@@ -12,7 +13,7 @@ export function Header(props: PropsType) {
     return <div className={s.header}>
     <div className={s.headerTop}>
         <div className={s.logo}>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/VK_Full_Logo.svg" alt=""/>
+            <img src={logo} alt=""/>
         </div>
         <div className={s.login}>
             {props.isAuth ? props.login : <NavLink to={'/login'}>Вход</NavLink>}

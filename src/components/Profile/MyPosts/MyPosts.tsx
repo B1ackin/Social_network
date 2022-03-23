@@ -34,7 +34,7 @@ export const MyPosts : React.FC<MyPostPropsType>= (props)=> {
     }
 
     return <div className={s.myPost}>
-        <div>My post</div>
+        <div className={s.post}>My post</div>
         <textarea ref={newPostElement} onChange={onPostChange} value={props.newPostText}/>
         <div>
             <button onClick={addPost}>Add post</button>

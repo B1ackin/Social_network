@@ -1,3 +1,13 @@
 .posts {
     display: flex;
 }
+.descrip {
+    margin-left: 15px;
+    margin-bottom: 30px;
+}
+.lastName {
+    margin-left: 15px;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}

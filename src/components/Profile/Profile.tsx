@@ -44,7 +44,8 @@ export function Profile(props: PropsType) {
         <ProfileInfo profile={props.profile}/>
 
        <div className={s.wrapper}>
-           <div>Description</div>
+           <div className={s.lastName}>Leonid Kruchenok</div>
+           <div className={s.descrip}>Description</div>
            <MyPostsContainer />
        </div>
     </div>
