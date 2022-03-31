@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {Dispatch} from "redux";
 import {
-    follow,
+    follow, getUserTC,
     setCurrentPage,
     setTotalUsersCount,
     setUsers, toogleFollowingProgress, toogleIsFetching,
@@ -45,12 +45,14 @@ export type UsersPropsType = MapStatePropsType & MapDispatchToProps & OwnProps
 export class UsersContainer extends React.Component<UsersPropsType> {
 
     componentDidMount() {
-        this.props.toogleIsFetching(true)
-        usersAPI.getUser(this.props.currentPage, this.props.pageSize).then(data => {
-                this.props.toogleIsFetching(false)
-                this.props.setUsers(data.items)
-                this.props.setTotalUsersCount(data.totalCount)
-            })
+
+        this.props.getUserTC()
+        // this.props.toogleIsFetching(true)
+        // usersAPI.getUser(this.props.currentPage, this.props.pageSize).then(data => {
+        //         this.props.toogleIsFetching(false)
+        //         this.props.setUsers(data.items)
+        //         this.props.setTotalUsersCount(data.totalCount)
+        //     })
     }
 
     onPageChange = (pageNumber: number) => {
@@ -123,5 +125,6 @@ export default connect<MapStatePropsType, MapDispatchToProps, OwnProps, AppState
     setCurrentPage,
     setTotalUsersCount,
     toogleIsFetching,
-    toogleFollowingProgress
+    toogleFollowingProgress,
+    getUserTC
 }) (UsersContainer)

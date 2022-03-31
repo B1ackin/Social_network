@@ -1,4 +1,6 @@
 import React from 'react';
+import {Dispatch} from "redux";
+import {usersAPI} from "../api/api";
 
 type FollowAC = {
     type: "FOLLOW",
@@ -153,7 +155,14 @@ export const setTotalUsersCount = (totalCount: number) => ({type: SET_TOTAL_USER
 export const toogleIsFetching = (isFetching: boolean) => ({type: TOOGLE_IS_FETCHING, isFetching})
 export const toogleFollowingProgress = (isFetching: boolean, userId: number) => ({type: TOOGLE_IS_FOLLOWING_PROGRESS, isFetching, userId})
 
-
+export const getUserTC = (currentPage: number, pageSize: number) => (dispatch: Dispatch) => {
+    dispatch(toogleIsFetching(true))
+    usersAPI.getUser(currentPage, pageSize).then(data => {
+        dispatch(toogleIsFetching(false))
+        dispatch(setUsers(data.items))
+        dispatch(setTotalUsersCount(data.totalCount))
+    })
+}
 
 
 export default usersReducer;
