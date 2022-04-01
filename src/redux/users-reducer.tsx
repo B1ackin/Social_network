@@ -147,15 +147,37 @@ const usersReducer = (state:UsersArrayType = initialState, action: UsersActionTy
     }
 }
 
-export const follow = (userId: number) => ({type: FOLLOW, userId})
-export const unfollow = (userId: number) => ({type: UNFOLLOW, userId})
+export const followSuccess = (userId: number) => ({type: FOLLOW, userId})
+export const unfollowSuccess = (userId: number) => ({type: UNFOLLOW, userId})
 export const setUsers = (users: Array<UserType>) => ({type: SET_USERS, users})
 export const setCurrentPage = (currentPage: number) => ({type: SET_CURRENT_PAGE, currentPage})
 export const setTotalUsersCount = (totalCount: number) => ({type: SET_TOTAL_USERS_COUNT, count: totalCount})
 export const toogleIsFetching = (isFetching: boolean) => ({type: TOOGLE_IS_FETCHING, isFetching})
 export const toogleFollowingProgress = (isFetching: boolean, userId: number) => ({type: TOOGLE_IS_FOLLOWING_PROGRESS, isFetching, userId})
 
-export const getUserTC = (currentPage: number, pageSize: number) => (dispatch: Dispatch) => {
+export const follow = (userId: number) => (dispatch: Dispatch) => {
+    dispatch(toogleFollowingProgress(true, userId))
+    usersAPI.follow(userId)
+        .then(response => {
+            if(response.data.resultCode == 0) {
+                dispatch(followSuccess(userId))
+            }
+            dispatch(toogleFollowingProgress(false, userId))
+        })
+}
+
+export const unfollow = (userId: number) => (dispatch: Dispatch) => {
+    dispatch(toogleFollowingProgress(true, userId))
+    usersAPI.unfollow(userId)
+        .then(response => {
+            if(response.data.resultCode == 0) {
+                dispatch(unfollowSuccess(userId))
+            }
+            dispatch(toogleFollowingProgress(false, userId))
+        })
+}
+
+export const getUsersTC = (currentPage: number, pageSize: number) => (dispatch: Dispatch) => {
     dispatch(toogleIsFetching(true))
     usersAPI.getUser(currentPage, pageSize).then(data => {
         dispatch(toogleIsFetching(false))
