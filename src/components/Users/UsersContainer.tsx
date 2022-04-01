@@ -3,16 +3,14 @@ import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {Dispatch} from "redux";
 import {
+    follow,
     followSuccess, getUsersTC,
     setCurrentPage,
-    setTotalUsersCount,
-    setUsers, toogleFollowingProgress, toogleIsFetching,
+    toogleFollowingProgress, unfollow,
     unfollowSuccess,
     UserType
 } from "../../redux/users-reducer";
-import axios from "axios";
 import Users from "./Users";
-import {usersAPI} from "../../api/api";
 
 
 type MapStatePropsType = {
@@ -29,7 +27,7 @@ type MapDispatchToProps = {
     unfollow:(userId:number) => void
     setCurrentPage: (pageNumber: number) => void
     toogleFollowingProgress: (isFetching:boolean, userId:number) => void
-    getUsersTC: (currentPage: number, pageSize: number) => void
+    getUsers: (currentPage: number, pageSize: number) => void
 
 }
 
@@ -44,7 +42,7 @@ export class UsersContainer extends React.Component<UsersPropsType> {
 
     componentDidMount() {
 
-        this.props.getUsersTC(this.props.currentPage, this.props.pageSize)
+        this.props.getUsers(this.props.currentPage, this.props.pageSize)
 
         // this.props.toogleIsFetching(true)
         // usersAPI.getUser(this.props.currentPage, this.props.pageSize).then(data => {
@@ -55,7 +53,7 @@ export class UsersContainer extends React.Component<UsersPropsType> {
     }
 
     onPageChange = (pageNumber: number) => {
-        this.props.getUsersTC(pageNumber, this.props.pageSize)
+        this.props.getUsers(pageNumber, this.props.pageSize)
     }
 
     render() {
@@ -112,9 +110,9 @@ const MapStateToProps = (state: AppStateType):MapStatePropsType => {
 
 
 export default connect<MapStatePropsType, MapDispatchToProps, OwnProps, AppStateType>(MapStateToProps, {
-    follow: followSuccess,
-    unfollow: unfollowSuccess,
+    follow,
+    unfollow,
     setCurrentPage,
     toogleFollowingProgress,
-    getUsersTC
+    getUsers: getUsersTC
 }) (UsersContainer)

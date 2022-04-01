@@ -1,4 +1,6 @@
 import React from 'react';
+import {authAPI} from "../api/api";
+import {Dispatch} from "redux";
 
 const SET_USER_DATA = 'SET_USER_DATA'
 
@@ -45,5 +47,13 @@ export const setAuthUserData = (userId: number, email: string, login: string): S
     data: { userId, email, login }
 })
 
+export const getAuthUserData = () => (dispath: Dispatch) => {
+    authAPI.me().then(response => {
+        if(response.data.resultCode === 0) {
+            let {id, email, login} = response.data.data
+            dispath(setAuthUserData(id, email, login))
+        }
+    })
+}
 
 export default authReducer;

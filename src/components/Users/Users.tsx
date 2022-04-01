@@ -4,8 +4,7 @@ import noAvatar from '../../assets/images/no-avatar.png'
 import s from './users.module.css'
 import {Preloader} from "../common/Preloader/Preloader";
 import {NavLink} from "react-router-dom";
-import axios from "axios";
-import {usersAPI} from "../../api/api";
+
 
 type PropsUserType = {
     users: Array<UserType>
@@ -13,8 +12,8 @@ type PropsUserType = {
     totalUserCount: number
     currentPage: number
     onPageChange: (pageNumber: number) => void
-    follow: (userID: number) => void
-    unfollow: (userID: number) => void
+    follow: (userId: number) => void
+    unfollow: (userId: number) => void
     isFetching: boolean
     followingInProgress: Array<number>
 
@@ -24,7 +23,6 @@ type PropsUserType = {
 
     let pageCount = Math.ceil(props.totalUserCount / props.pageSize) //pageSize: 12 //totalUserCount: 5 // Всего
      //юзеров делим на количество друзей на странице и получаем кол-во страниц
-     console.log(pageCount) //1455 страниц
 
     let pages = []
     for (let i = 1; i <= pageCount; i++) {
@@ -33,6 +31,7 @@ type PropsUserType = {
 
         return <div><h1 className='titleFriend'>My Friends:</h1>
             <div>
+
                 {props.isFetching ? <Preloader/> : null}
                 {pages.map(p => {
                     return <span className={props.currentPage === p ? s.selectedPage : ''}

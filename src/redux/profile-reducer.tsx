@@ -1,5 +1,7 @@
 import React from 'react';
 import {ProfileType} from "../components/Profile/Profile";
+import {usersAPI} from "../api/api";
+import {Dispatch} from "redux";
 
 const ADD_POST = "ADD-POST"
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT"
@@ -89,5 +91,10 @@ export const updateNewPostTextAC = (text: string): NewPostTextTypeAC => ({
     newText: text
 })
 export const setUserProfile = (profile: ProfileType) => ({type: SET_USER_PROFILE, profile})
+
+export const getUserProfile = (userId: number) => (dispatch: Dispatch) => {
+    usersAPI.getProfile(userId).then(response => {
+        dispatch(setUserProfile(response.data)) })
+}
 
 export default profileReducer;
